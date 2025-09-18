@@ -59,7 +59,13 @@ header {
    * horizontal shifts on smaller screens. Padding provides space
    * around the logo and navigation links.
    */
-  background-color: rgba(0, 0, 0, 0.85);
+  /*
+   * Use a solid black background on the header instead of the semi‑transparent
+   * dark overlay. This increases contrast between the navigation
+   * bar and the content behind it, as requested by the user. Keep
+   * the text colour white for maximum readability.
+   */
+  background-color: #000000;
   color: var(--light-text);
   padding: 1rem 0;
   position: sticky;
