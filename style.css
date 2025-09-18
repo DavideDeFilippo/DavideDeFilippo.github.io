@@ -22,14 +22,20 @@ body {
    * image is tileable and will scale to cover the viewport while
    * remaining fixed during scroll.
    */
-    background-image: url('marble_light.png');
+  /*
+   * Use a marble texture as the global page background. The image will
+   * cover the viewport and remain fixed during scroll. In addition,
+   * convert the body into a flex container so the footer sticks to
+   * the bottom of the page on shorter pages. A minimum height of
+   * 100vh ensures the content occupies the full viewport height.
+   */
+  background-image: url('marble_light.png');
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
 }
 
 /* Ensure the root element spans the full viewport height so the body
@@ -44,15 +50,22 @@ main {
   flex: 1;
 }
 
-0
 header {
-  /* Semi‑transparent header overlay to stand out against the marble backdrop */
-  background-color: rgba(44, 62, 80, 0.85);
+  /*
+   * A fixed dark header that stays visible while scrolling. A solid
+   * black background with slight transparency ensures good contrast
+   * against both light and dark sections of the site. The z-index
+   * guarantees it sits above other content. Width 100% prevents
+   * horizontal shifts on smaller screens. Padding provides space
+   * around the logo and navigation links.
+   */
+  background-color: rgba(0, 0, 0, 0.85);
   color: var(--light-text);
   padding: 1rem 0;
   position: sticky;
   top: 0;
-  z-index: 10;
+  width: 100%;
+  z-index: 1000;
 }
 
 header .container {
@@ -292,9 +305,15 @@ main section {
   background-color: #997747;
 }
 
+/*
+ * Footer styling: use a solid black background with white text to
+ * improve contrast and clearly separate the page content from the
+ * bottom of the viewport. The padding provides breathing room
+ * around the copyright notice.
+ */
 footer {
-  background-color: var(--primary-color);
-  color: var(--light-text);
+  background-color: #000000;
+  color: #ffffff;
   text-align: center;
   padding: 1rem;
 }
