@@ -1,10 +1,15 @@
 /* Color palette */
 :root {
-  --primary-color: #1e3a8a; /* deep blue */
-  --secondary-color: #10b981; /* emerald green */
-  --light-bg: #f8fafc;
-  --dark-text: #1f2937;
-  --light-text: #ffffff;
+  /*
+   * Updated color palette for a more modern, elegant look inspired by marble.
+   * Primary colour is a deep slate that complements dark marble.
+   * Secondary colour is a warm gold tone that works well on buttons and accents.
+   */
+  --primary-color: #2c3e50; /* deep slate */
+  --secondary-color: #b89b5e; /* warm gold */
+  --light-bg: #f5f5f5; /* very light background for contrast */
+  --dark-text: #2c3e50; /* match primary colour for headings/text */
+  --light-text: #ffffff; /* white text for dark backgrounds */
 }
 
 body {
@@ -12,11 +17,20 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: var(--dark-text);
-  background-color: var(--light-bg);
+  /*
+   * Use a subtle marble texture as the global page background. The
+   * image is tileable and will scale to cover the viewport while
+   * remaining fixed during scroll.
+   */
+  background-image: url('marble_light.png');
+  background-size: cover;
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 header {
-  background-color: var(--primary-color);
+  /* Semi‑transparent header overlay to stand out against the marble backdrop */
+  background-color: rgba(44, 62, 80, 0.85);
   color: var(--light-text);
   padding: 1rem 0;
   position: sticky;
@@ -58,8 +72,12 @@ header nav a:hover {
   opacity: 0.8;
 }
 
+/*
+ * The hero section now uses a dark marble texture with gold veins to
+ * immediately convey elegance. Text remains light for contrast.
+ */
 .hero {
-  background-image: url('hero.png');
+  background-image: url('marble_dark.png');
   background-size: cover;
   background-position: center;
   color: var(--light-text);
@@ -124,7 +142,8 @@ header nav a:hover {
 }
 
 .btn:hover {
-  background-color: #059669; /* slightly darker green */
+  /* Darken the warm gold on hover for a subtle interaction effect */
+  background-color: #997747;
 }
 
 .cta {
@@ -225,7 +244,7 @@ main section {
 }
 
 .contact button:hover {
-  background-color: #059669;
+  background-color: #997747;
 }
 
 footer {
