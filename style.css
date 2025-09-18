@@ -22,12 +22,29 @@ body {
    * image is tileable and will scale to cover the viewport while
    * remaining fixed during scroll.
    */
-  background-image: url('marble_light.png');
+    background-image: url('marble_light.png');
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
 }
 
+/* Ensure the root element spans the full viewport height so the body
+ * flexbox layout can push the footer to the bottom when content is
+ * short. */
+html {
+  height: 100%;
+}
+
+/* Allow the main content area to grow and fill remaining vertical space. */
+main {
+  flex: 1;
+}
+
+0
 header {
   /* Semi‑transparent header overlay to stand out against the marble backdrop */
   background-color: rgba(44, 62, 80, 0.85);
