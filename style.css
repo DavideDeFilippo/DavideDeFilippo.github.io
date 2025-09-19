@@ -38,6 +38,21 @@ body {
   min-height: 100vh;
 }
 
+/* Prevent horizontal scrolling on small screens */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Hamburger menu button styling */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--light-text);
+  cursor: pointer;
+}
+
 /* Ensure the root element spans the full viewport height so the body
  * flexbox layout can push the footer to the bottom when content is
  * short. */
@@ -106,6 +121,18 @@ header nav a {
 
 header nav a:hover {
   opacity: 0.8;
+}
+
+/*
+ * Prevent horizontal scrolling on the hero and main sections.  On some mobile
+ * devices the combination of large images and margins can create a tiny
+ * horizontal scroll area.  Setting overflow-x: hidden on these elements
+ * ensures the layout stays anchored and users cannot slide the page left
+ * or right.【345653963197261†screenshot】
+ */
+.hero,
+main {
+  overflow-x: hidden;
 }
 
 /*
@@ -411,14 +438,51 @@ p {
   header nav a {
     padding: 0.5rem 0.75rem;
   }
+  /*
+   * On small screens the photo gallery becomes a single column.  Using
+   * !important ensures this override takes precedence over the base grid
+   * definition which may set multiple columns via auto-fit.
+   */
   .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: grid;
+    grid-template-columns: 1fr !important;
   }
   .passion-list {
     grid-template-columns: 1fr;
   }
   section {
     padding: 1.75rem 1rem;
+  }
+}
+
+/* Additional mobile menu styles */
+@media (max-width: 600px) {
+  /* Show the hamburger button */
+  .menu-toggle {
+    display: block;
+  }
+  /*
+   * Hide navigation links by default on small screens.  Because the base
+   * styles set display:flex on the nav list, we use !important here to
+   * override that declaration.  The nav list is converted into a
+   * vertical stack and fills the width of the header.  A black
+   * background ensures contrast against the page content.
+   */
+  header nav ul {
+    display: none !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #000;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+  /* When the menu is toggled on, display the links */
+  header nav ul.show {
+    display: flex !important;
+  }
+  header nav li {
+    margin: 0.5rem 0;
   }
 }
 
