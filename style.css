@@ -323,3 +323,111 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
+/*
+ * Responsive design adjustments
+ *
+ * The following rules make the site more adaptable across different
+ * screen sizes. We introduce a simple CSS reset for box sizing and
+ * responsive images, define a reusable container class for
+ * consistent horizontal padding, scale typography using the `clamp`
+ * function, and tweak grid layouts so the photo gallery and hobby
+ * cards wrap gracefully on narrow screens. Media queries adjust the
+ * layout of the header navigation and section padding for tablets
+ * and mobile devices.
+ */
+
+/* Box-sizing reset ensures padding and border are included in
+   element dimensions */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* A flexible container for consistent margins and padding */
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Fluid typography scales headings and paragraphs based on viewport */
+h1 {
+  font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2vw + 0.8rem, 2rem);
+}
+
+p {
+  font-size: clamp(0.95rem, 1vw + 0.6rem, 1.1rem);
+}
+
+/* Adaptive grid layouts for the gallery and hobby cards */
+.gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.passion-list {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Make form controls full width on narrow devices */
+.contact .form-group,
+.contact form input,
+.contact form textarea,
+.contact form button {
+  width: 100%;
+}
+
+/* Tablet breakpoint: allow header to wrap and add row gaps */
+@media (max-width: 900px) {
+  header .container {
+    flex-wrap: wrap;
+  }
+  header nav ul {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+}
+
+/* Mobile breakpoint: stack header elements and centre nav links */
+@media (max-width: 600px) {
+  header .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  header nav ul {
+    justify-content: center;
+  }
+  header nav a {
+    padding: 0.5rem 0.75rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .passion-list {
+    grid-template-columns: 1fr;
+  }
+  section {
+    padding: 1.75rem 1rem;
+  }
+}
+
+/* Very small devices: tighten spacing */
+@media (max-width: 380px) {
+  header nav ul {
+    gap: 0.5rem;
+  }
+  .hero p {
+    padding: 0 0.5rem;
+  }
+}
