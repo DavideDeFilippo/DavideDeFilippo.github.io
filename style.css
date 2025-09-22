@@ -154,12 +154,27 @@ main {
 }
 
 .hero h1 {
-  font-size: 3rem;
+  /*
+   * Use responsive typography for the hero headline.  The `clamp` function
+   * scales the text smoothly between small and large screens.  This
+   * prevents the heading from overflowing the viewport on mobile
+   * devices while still looking prominent on desktops.  The values
+   * represent: minimum size 2rem, preferred size that grows with
+   * viewport width (5% of the viewport width plus 1rem), and a
+   * maximum size of 3.5rem.
+   */
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
   margin-bottom: 0.5rem;
 }
 
 .hero p {
-  font-size: 1.25rem;
+  /*
+   * Apply a responsive scale to the hero paragraph as well.  This
+   * text adjusts based on the viewport width: it never shrinks
+   * smaller than 1rem and never grows larger than 1.5rem, with a
+   * gradual increase in between controlled by the viewport width.
+   */
+  font-size: clamp(1rem, 2.5vw + 0.5rem, 1.5rem);
   margin-bottom: 1.5rem;
 }
 
@@ -456,18 +471,19 @@ p {
 }
 
 /* Additional mobile menu styles */
-@media (max-width: 600px) {
+/*
+ * At widths up to 900px we treat the navigation as mobile: a
+ * hamburger button is shown and the nav list is hidden by default.
+ * A wider breakpoint ensures the menu appears on most handheld
+ * devices, even those with high‑resolution screens.  The use of
+ * !important overrides the base flex display on the nav list.
+ */
+@media (max-width: 900px) {
   /* Show the hamburger button */
   .menu-toggle {
     display: block;
   }
-  /*
-   * Hide navigation links by default on small screens.  Because the base
-   * styles set display:flex on the nav list, we use !important here to
-   * override that declaration.  The nav list is converted into a
-   * vertical stack and fills the width of the header.  A black
-   * background ensures contrast against the page content.
-   */
+  /* Hide navigation links by default and stack them vertically */
   header nav ul {
     display: none !important;
     flex-direction: column;
@@ -483,6 +499,20 @@ p {
   }
   header nav li {
     margin: 0.5rem 0;
+  }
+}
+
+/*
+ * Reduce hero text sizes on very small screens to prevent text
+ * overflowing the viewport.  Override the more specific `.hero h1` rule
+ * defined earlier.
+ */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
   }
 }
 
